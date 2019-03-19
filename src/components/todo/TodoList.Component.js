@@ -25,15 +25,14 @@ const contextTypes = {
 class TodoList extends React.Component{
     onToggleChange = e => {
         const { relay, viewer } = this.props;
-        const { variables } = relay;
+        const { variables } = this.context.relay;
         const complete = e.target.checked;
 
         MarkAllTodosMutation.commit(
             relay.environment,
             viewer,
             viewer.todos,
-            complete,
-            variables.status
+            complete
         )
     }
 
@@ -85,14 +84,13 @@ class TodoList extends React.Component{
                         <Todo key={node.id} viewer={viewer} todo={node} />
                     ))}
                 </ul>
+
                 <button
                     className="load-more-btn"
                     onClick={() => this._loadMore()}
                     title="Load More">
                       {'Load More'}
-                    </button>
-
-
+                </button>
             </section>
         )
     }

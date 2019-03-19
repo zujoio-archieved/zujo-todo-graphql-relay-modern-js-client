@@ -12,7 +12,7 @@ import { DEFAULT_TODO_PAGE_LIMIT } from '../common/common.constant'
 const TodoListQuery = graphql`
   query routes_TodoList_Query($status: String!) {
     viewer {
-      ...TodoList_viewer @arguments(count: 5, cursor: null, status: $status)
+      ...TodoList_viewer @arguments(count: $count, cursor: null, status: $status)
     }
   }
 `;
