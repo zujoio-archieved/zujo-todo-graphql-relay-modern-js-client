@@ -55,44 +55,44 @@ function sharedUpdater(store, user, todoEdge) {
 }
 
 
-function commit(enviroment, user, text){
-    const clientMutationId = uuid.v4();
+function commit(environment, user, text){
+    if(environment){
+      const clientMutationId = uuid.v4();
 
-    return commitMutation(enviroment, {
-        mutation,
-        variables: {
-            input: { text, clientMutationId  }
-        },
+      return commitMutation(environment, {
+          mutation,
+          variables: {
+              input: { text, clientMutationId  }
+          },
+
+          
+          updater(store){
+              const payload = store.getRootField('addTodo');
+              sharedUpdater(store, user, payload.getLinkedRecord('todoEdge'))
+          },
 
         
-        updater(store){
-            console.log("commiting: todo addded")
-            const payload = store.getRootField('addTodo');
-            sharedUpdater(store, user, payload.getLinkedRecord('todoEdge'))
-        },
+          optimisticUpdater: (store) => {
+              const id = `client:addTodo:Todo:${clientMutationId}`;
+              const todo = store.create(id, 'Todo');
+              todo.setValue(text, 'text');
+              todo.setValue(id, 'id')
 
-       
-        optimisticUpdater: (store) => {
-            console.log("commiting: todo addded optimistic")
-            const id = `client:addTodo:Todo:${clientMutationId}`;
-            const todo = store.create(id, 'Todo');
-            todo.setValue(text, 'text');
-            todo.setValue(id, 'id')
+              const todoEdge = store.create(
+                  `client:addTodo:TodoEdge:${clientMutationId}`,
+                  'TodoEdge'
+              )
+              todoEdge.setLinkedRecord(todo, 'node');
+              sharedUpdater(store, user, todoEdge);
 
-            const todoEdge = store.create(
-                `client:addTodo:TodoEdge:${clientMutationId}`,
-                'TodoEdge'
-            )
-            todoEdge.setLinkedRecord(todo, 'node');
-            sharedUpdater(store, user, todoEdge);
-
-            const userProxy = store.get(user.id);
-            const numTodos = userProxy.getValue('numTodos');
-            if(numTodos != null){
-                userProxy.setValue(numTodos + 1, 'numTodos')
-            }
-        }
-    });
+              const userProxy = store.get(user.id);
+              const numTodos = userProxy.getValue('numTodos');
+              if(numTodos != null){
+                  userProxy.setValue(numTodos + 1, 'numTodos')
+              }
+          }
+      });
+  }
 }
 
 export default { commit }
