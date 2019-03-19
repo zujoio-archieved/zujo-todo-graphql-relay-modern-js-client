@@ -6,11 +6,13 @@ import { graphql } from 'react-relay';
 import TodoApp from '../components/todo/TodoApp.Component'
 import TodoList from '../components/todo/TodoList.Component'
 
+import { DEFAULT_TODO_PAGE_LIMIT } from '../common/common.constant'
+
 
 const TodoListQuery = graphql`
   query routes_TodoList_Query($status: String!) {
     viewer {
-      ...TodoList_viewer
+      ...TodoList_viewer @arguments(count: 5, cursor: null, status: $status)
     }
   }
 `;
@@ -26,13 +28,14 @@ export default makeRouteConfig(
         }
       }
     `}
+    prepareVariables={params => ({ ...params, status: 'any', count: DEFAULT_TODO_PAGE_LIMIT })}
   >
     <Route
       Component={TodoList}
       query={TodoListQuery}
-      prepareVariables={params => ({ ...params, status: 'any' })}
+      prepareVariables={params => ({ ...params, status: 'any', count: DEFAULT_TODO_PAGE_LIMIT })}
     />
     <Route path=":status" Component={TodoList} query={TodoListQuery} />
-    <Route path="home" Component={TodoList} query={TodoListQuery} ></Route>
+    <Route path="home" Component={TodoList} query={TodoListQuery} prepareVariables={params => ({ ...params, status: 'any', count: DEFAULT_TODO_PAGE_LIMIT })} ></Route>
   </Route>,
 );

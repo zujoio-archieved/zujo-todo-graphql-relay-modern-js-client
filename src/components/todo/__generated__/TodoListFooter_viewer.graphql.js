@@ -11,14 +11,6 @@ import type { ReaderFragment } from 'relay-runtime';
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type TodoListFooter_viewer$ref: FragmentReference;
 export type TodoListFooter_viewer = {|
-  +todos: ?{|
-    +edges: ?$ReadOnlyArray<?{|
-      +node: ?{|
-        +id: string,
-        +complete: ?boolean,
-      |}
-    |}>
-  |},
   +id: string,
   +numTodos: ?number,
   +numCompletedTodos: ?number,
@@ -27,15 +19,7 @@ export type TodoListFooter_viewer = {|
 */
 
 
-const node/*: ReaderFragment*/ = (function(){
-var v0 = {
-  "kind": "ScalarField",
-  "alias": null,
-  "name": "id",
-  "args": null,
-  "storageKey": null
-};
-return {
+const node/*: ReaderFragment*/ = {
   "kind": "Fragment",
   "name": "TodoListFooter_viewer",
   "type": "User",
@@ -43,60 +27,12 @@ return {
   "argumentDefinitions": [],
   "selections": [
     {
-      "kind": "LinkedField",
+      "kind": "ScalarField",
       "alias": null,
-      "name": "todos",
-      "storageKey": "todos(first:2147483647,status:\"completed\")",
-      "args": [
-        {
-          "kind": "Literal",
-          "name": "first",
-          "value": 2147483647,
-          "type": "Int"
-        },
-        {
-          "kind": "Literal",
-          "name": "status",
-          "value": "completed",
-          "type": "String"
-        }
-      ],
-      "concreteType": "TodoConnection",
-      "plural": false,
-      "selections": [
-        {
-          "kind": "LinkedField",
-          "alias": null,
-          "name": "edges",
-          "storageKey": null,
-          "args": null,
-          "concreteType": "TodoEdge",
-          "plural": true,
-          "selections": [
-            {
-              "kind": "LinkedField",
-              "alias": null,
-              "name": "node",
-              "storageKey": null,
-              "args": null,
-              "concreteType": "Todo",
-              "plural": false,
-              "selections": [
-                (v0/*: any*/),
-                {
-                  "kind": "ScalarField",
-                  "alias": null,
-                  "name": "complete",
-                  "args": null,
-                  "storageKey": null
-                }
-              ]
-            }
-          ]
-        }
-      ]
+      "name": "id",
+      "args": null,
+      "storageKey": null
     },
-    (v0/*: any*/),
     {
       "kind": "ScalarField",
       "alias": null,
@@ -113,7 +49,6 @@ return {
     }
   ]
 };
-})();
 // prettier-ignore
-(node/*: any*/).hash = '03a6575b978c6e0dec78312c64dadc8a';
+(node/*: any*/).hash = '513a3932d20987643de2af887fb4231f';
 module.exports = node;

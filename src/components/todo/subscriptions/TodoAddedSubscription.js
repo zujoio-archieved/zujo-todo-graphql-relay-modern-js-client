@@ -54,23 +54,25 @@ function sharedUpdater(store, user, todoEdge) {
 
 
 function request(enviroment, viewer){
-    const subscriptionConfig = {
-        subscription: subscription,
-        variables: {},
-        updater: proxyStore => {
-            const payload = proxyStore.getRootField('todoAdded');
-            const todoEdge = payload.getLinkedRecord('todoEdge')
-            sharedUpdater(proxyStore, viewer, todoEdge)
-            const userProxy = proxyStore.get(viewer.id);
-            const numTodos = userProxy.getValue('numTodos');
-            if(numTodos != null){
-                userProxy.setValue(numTodos + 1, 'numTodos')
-            }
-        },
-        onError: error => { throw new Error(error) }
-      };
+    if(enviroment){
+      const subscriptionConfig = {
+          subscription: subscription,
+          variables: {},
+          updater: proxyStore => {
+              const payload = proxyStore.getRootField('todoAdded');
+              const todoEdge = payload.getLinkedRecord('todoEdge')
+              sharedUpdater(proxyStore, viewer, todoEdge)
+              const userProxy = proxyStore.get(viewer.id);
+              const numTodos = userProxy.getValue('numTodos');
+              if(numTodos != null){
+                  userProxy.setValue(numTodos + 1, 'numTodos')
+              }
+          },
+          onError: error => { throw new Error(error) }
+        };
 
-    return requestSubscription(enviroment, subscriptionConfig);
+      return requestSubscription(enviroment, subscriptionConfig);
+    }
 }
 
 export default { request }

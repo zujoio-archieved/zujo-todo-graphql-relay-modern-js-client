@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 01de7e1a3a6d55a66024b701ac07a061
+ * @relayHash 4b943b94d91896ea1d66f2c97de2c193
  */
 
 /* eslint-disable */
@@ -10,33 +10,37 @@
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
 type TodoList_viewer$ref = any;
-export type routes_TodoList_QueryVariables = {|
-  status: string
+export type TodoListPaginationQueryVariables = {|
+  count: number,
+  cursor: string,
+  status?: ?string,
 |};
-export type routes_TodoList_QueryResponse = {|
+export type TodoListPaginationQueryResponse = {|
   +viewer: ?{|
     +$fragmentRefs: TodoList_viewer$ref
   |}
 |};
-export type routes_TodoList_Query = {|
-  variables: routes_TodoList_QueryVariables,
-  response: routes_TodoList_QueryResponse,
+export type TodoListPaginationQuery = {|
+  variables: TodoListPaginationQueryVariables,
+  response: TodoListPaginationQueryResponse,
 |};
 */
 
 
 /*
-query routes_TodoList_Query(
-  $status: String!
+query TodoListPaginationQuery(
+  $count: Int!
+  $cursor: String!
+  $status: String
 ) {
   viewer {
-    ...TodoList_viewer_2Y9aWx
+    ...TodoList_viewer_4qXjrI
     id
   }
 }
 
-fragment TodoList_viewer_2Y9aWx on User {
-  todos(status: $status, first: 5) {
+fragment TodoList_viewer_4qXjrI on User {
+  todos(status: $status, first: $count, after: $cursor) {
     edges {
       node {
         id
@@ -72,16 +76,34 @@ const node/*: ConcreteRequest*/ = (function(){
 var v0 = [
   {
     "kind": "LocalArgument",
-    "name": "status",
+    "name": "count",
+    "type": "Int!",
+    "defaultValue": null
+  },
+  {
+    "kind": "LocalArgument",
+    "name": "cursor",
     "type": "String!",
+    "defaultValue": null
+  },
+  {
+    "kind": "LocalArgument",
+    "name": "status",
+    "type": "String",
     "defaultValue": null
   }
 ],
 v1 = [
   {
-    "kind": "Literal",
+    "kind": "Variable",
+    "name": "after",
+    "variableName": "cursor",
+    "type": "String"
+  },
+  {
+    "kind": "Variable",
     "name": "first",
-    "value": 5,
+    "variableName": "count",
     "type": "Int"
   },
   {
@@ -102,7 +124,7 @@ return {
   "kind": "Request",
   "fragment": {
     "kind": "Fragment",
-    "name": "routes_TodoList_Query",
+    "name": "TodoListPaginationQuery",
     "type": "Root",
     "metadata": null,
     "argumentDefinitions": (v0/*: any*/),
@@ -121,10 +143,16 @@ return {
             "name": "TodoList_viewer",
             "args": [
               {
-                "kind": "Literal",
+                "kind": "Variable",
                 "name": "count",
-                "value": 5,
-                "type": "Int"
+                "variableName": "count",
+                "type": null
+              },
+              {
+                "kind": "Variable",
+                "name": "cursor",
+                "variableName": "cursor",
+                "type": null
               },
               {
                 "kind": "Variable",
@@ -140,7 +168,7 @@ return {
   },
   "operation": {
     "kind": "Operation",
-    "name": "routes_TodoList_Query",
+    "name": "TodoListPaginationQuery",
     "argumentDefinitions": (v0/*: any*/),
     "selections": [
       {
@@ -271,13 +299,13 @@ return {
   },
   "params": {
     "operationKind": "query",
-    "name": "routes_TodoList_Query",
+    "name": "TodoListPaginationQuery",
     "id": null,
-    "text": "query routes_TodoList_Query(\n  $status: String!\n) {\n  viewer {\n    ...TodoList_viewer_2Y9aWx\n    id\n  }\n}\n\nfragment TodoList_viewer_2Y9aWx on User {\n  todos(status: $status, first: 5) {\n    edges {\n      node {\n        id\n        complete\n        ...Todo_todo\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n  numTodos\n  numCompletedTodos\n  ...Todo_viewer\n}\n\nfragment Todo_todo on Todo {\n  id\n  complete\n  text\n}\n\nfragment Todo_viewer on User {\n  id\n}\n",
+    "text": "query TodoListPaginationQuery(\n  $count: Int!\n  $cursor: String!\n  $status: String\n) {\n  viewer {\n    ...TodoList_viewer_4qXjrI\n    id\n  }\n}\n\nfragment TodoList_viewer_4qXjrI on User {\n  todos(status: $status, first: $count, after: $cursor) {\n    edges {\n      node {\n        id\n        complete\n        ...Todo_todo\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n  numTodos\n  numCompletedTodos\n  ...Todo_viewer\n}\n\nfragment Todo_todo on Todo {\n  id\n  complete\n  text\n}\n\nfragment Todo_viewer on User {\n  id\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'ec0036f8e070d527a1ef8a5e87f45942';
+(node/*: any*/).hash = '8ce54323dd788c21c31d0bbdb113e658';
 module.exports = node;

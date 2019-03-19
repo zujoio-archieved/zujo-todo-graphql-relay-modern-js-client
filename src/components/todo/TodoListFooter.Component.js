@@ -6,8 +6,6 @@ import { createFragmentContainer, graphql } from 'react-relay';
 import RemoveCompletedTodosMutation from './mutations/RemoveCompletedTodoMutation'
 import RemoveCompletedTodoSubscription from './subscriptions/RemoveCompletedTodoSubscription'
 
-import enviroment from '../../Environment'
-
 const propTypes = {
     viewer: PropTypes.object.isRequired,
     relay: PropTypes.object.isRequired,
@@ -18,12 +16,12 @@ class TodoListFooter extends React.Component{
     onClearCompletedClick = () => {
         const { relay, viewer } = this.props;
         const { todos } = viewer;
-        RemoveCompletedTodosMutation.commit(enviroment, viewer, todos);
+        RemoveCompletedTodosMutation.commit(relay.environment, viewer, todos);
     }
 
     componentDidMount = () =>{
         const { relay, viewer } = this.props;
-        RemoveCompletedTodoSubscription.request(enviroment, viewer)
+        RemoveCompletedTodoSubscription.request(relay.environment, viewer)
     }
 
     render() {
@@ -75,14 +73,6 @@ export default createFragmentContainer(
     TodoListFooter,
     graphql`
         fragment TodoListFooter_viewer on User {
-            todos(status: "completed", first: 2147483647){
-                edges{
-                    node{
-                        id
-                        complete
-                    }
-                }
-            }
             id
             numTodos
             numCompletedTodos

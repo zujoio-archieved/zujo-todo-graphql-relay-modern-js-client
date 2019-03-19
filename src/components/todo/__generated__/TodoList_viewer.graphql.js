@@ -46,8 +46,8 @@ return {
   "metadata": {
     "connection": [
       {
-        "count": null,
-        "cursor": null,
+        "count": "count",
+        "cursor": "cursor",
         "direction": "forward",
         "path": [
           "todos"
@@ -57,9 +57,22 @@ return {
   },
   "argumentDefinitions": [
     {
-      "kind": "RootArgument",
+      "kind": "LocalArgument",
+      "name": "count",
+      "type": "Int",
+      "defaultValue": 2
+    },
+    {
+      "kind": "LocalArgument",
+      "name": "cursor",
+      "type": "String",
+      "defaultValue": null
+    },
+    {
+      "kind": "LocalArgument",
       "name": "status",
-      "type": "String"
+      "type": "String",
+      "defaultValue": null
     }
   ],
   "selections": [
@@ -179,5 +192,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'd1094979d526eb2f61d53261e733dce6';
+(node/*: any*/).hash = 'ed0bbbdc731ed684d172b4bd1e5f9809';
 module.exports = node;

@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 4ec9a772cfd78d6462d30580fdb4a14f
+ * @relayHash 09a9a206f5e33dbf58f1dd5e7c19b0bd
  */
 
 /* eslint-disable */
@@ -37,29 +37,13 @@ fragment TodoApp_viewer on User {
 }
 
 fragment TodoListFooter_viewer on User {
-  todos(status: "completed", first: 2147483647) {
-    edges {
-      node {
-        id
-        complete
-      }
-    }
-  }
   id
   numTodos
   numCompletedTodos
 }
 */
 
-const node/*: ConcreteRequest*/ = (function(){
-var v0 = {
-  "kind": "ScalarField",
-  "alias": null,
-  "name": "id",
-  "args": null,
-  "storageKey": null
-};
-return {
+const node/*: ConcreteRequest*/ = {
   "kind": "Request",
   "fragment": {
     "kind": "Fragment",
@@ -100,60 +84,12 @@ return {
         "concreteType": "User",
         "plural": false,
         "selections": [
-          (v0/*: any*/),
           {
-            "kind": "LinkedField",
+            "kind": "ScalarField",
             "alias": null,
-            "name": "todos",
-            "storageKey": "todos(first:2147483647,status:\"completed\")",
-            "args": [
-              {
-                "kind": "Literal",
-                "name": "first",
-                "value": 2147483647,
-                "type": "Int"
-              },
-              {
-                "kind": "Literal",
-                "name": "status",
-                "value": "completed",
-                "type": "String"
-              }
-            ],
-            "concreteType": "TodoConnection",
-            "plural": false,
-            "selections": [
-              {
-                "kind": "LinkedField",
-                "alias": null,
-                "name": "edges",
-                "storageKey": null,
-                "args": null,
-                "concreteType": "TodoEdge",
-                "plural": true,
-                "selections": [
-                  {
-                    "kind": "LinkedField",
-                    "alias": null,
-                    "name": "node",
-                    "storageKey": null,
-                    "args": null,
-                    "concreteType": "Todo",
-                    "plural": false,
-                    "selections": [
-                      (v0/*: any*/),
-                      {
-                        "kind": "ScalarField",
-                        "alias": null,
-                        "name": "complete",
-                        "args": null,
-                        "storageKey": null
-                      }
-                    ]
-                  }
-                ]
-              }
-            ]
+            "name": "id",
+            "args": null,
+            "storageKey": null
           },
           {
             "kind": "ScalarField",
@@ -177,11 +113,10 @@ return {
     "operationKind": "query",
     "name": "routes_TodoApp_Query",
     "id": null,
-    "text": "query routes_TodoApp_Query {\n  viewer {\n    ...TodoApp_viewer\n    id\n  }\n}\n\nfragment TodoApp_viewer on User {\n  id\n  ...TodoListFooter_viewer\n}\n\nfragment TodoListFooter_viewer on User {\n  todos(status: \"completed\", first: 2147483647) {\n    edges {\n      node {\n        id\n        complete\n      }\n    }\n  }\n  id\n  numTodos\n  numCompletedTodos\n}\n",
+    "text": "query routes_TodoApp_Query {\n  viewer {\n    ...TodoApp_viewer\n    id\n  }\n}\n\nfragment TodoApp_viewer on User {\n  id\n  ...TodoListFooter_viewer\n}\n\nfragment TodoListFooter_viewer on User {\n  id\n  numTodos\n  numCompletedTodos\n}\n",
     "metadata": {}
   }
 };
-})();
 // prettier-ignore
 (node/*: any*/).hash = 'e9925b532d021309a34926cb6c7e46cd';
 module.exports = node;

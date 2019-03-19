@@ -8,7 +8,6 @@ import RemoveTodoMutation from './mutations/RemoveTodoMutation'
 import RenameTodoMutation from './mutations/RenameTodoMutation'
 import ChangeTodoStatusMutation from './mutations/ChangeTodoStatusMutation';
 
-import enviroment from '../../Environment'
 
 const propTypes = {
     viewer: PropTypes.object.isRequired,
@@ -28,7 +27,7 @@ class Todo extends React.Component {
     onCompleteChange = e => {
         const { relay, viewer, todo } = this.props
         const conplete = e.target.checked
-        ChangeTodoStatusMutation.commit(enviroment, viewer, todo, conplete)
+        ChangeTodoStatusMutation.commit(relay.environment, viewer, todo, conplete)
     }
 
     onDestroyClick = () => {
@@ -53,7 +52,7 @@ class Todo extends React.Component {
 
         this.setEditMode(false);
 
-        RenameTodoMutation.commit(enviroment, todo, text)
+        RenameTodoMutation.commit(relay.environment, todo, text)
         
     }
 
@@ -64,7 +63,7 @@ class Todo extends React.Component {
     removeTodo() {
         const { relay, viewer, todo } = this.props;
 
-        RemoveTodoMutation.commit(enviroment, viewer, todo);
+        RemoveTodoMutation.commit(relay.environment, viewer, todo);
     }
 
     render() {

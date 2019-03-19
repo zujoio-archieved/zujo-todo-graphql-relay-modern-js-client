@@ -11,8 +11,6 @@ import ChangeTodoStatusSubscription from './subscriptions/ChangeTodoStatusSubscr
 import RemoveTodoSubscription from './subscriptions/RemoveTodoSubscription'
 import RenameTodoSubscription from './subscriptions/RenameTodoSubscription'
 
-import enviroment from '../../Environment'
-
 const propTypes = {
     viewer: PropTypes.object.isRequired,
     children: PropTypes.node.isRequired,
@@ -23,14 +21,14 @@ const propTypes = {
 class TodoApp extends React.Component{
     onNewTodoSave = text => {
         const { relay, viewer } = this.props
-        AddTodoMutation.commit(enviroment, viewer, text);
+        AddTodoMutation.commit(relay.environment, viewer, text);
     }
 
     componentDidMount = () =>{
         const { relay, viewer } = this.props;
-        ChangeTodoStatusSubscription.request(enviroment, viewer)
-        RemoveTodoSubscription.request(enviroment, viewer)
-        RenameTodoSubscription.request(enviroment, viewer)
+        ChangeTodoStatusSubscription.request(relay.environment, viewer)
+        RemoveTodoSubscription.request(relay.environment, viewer)
+        RenameTodoSubscription.request(relay.environment, viewer)
     }
 
     render(){
