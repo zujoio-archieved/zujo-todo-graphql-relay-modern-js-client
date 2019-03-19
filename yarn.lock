@@ -4140,17 +4140,16 @@ forwarded@~0.1.2:
   resolved "https://registry.yarnpkg.com/forwarded/-/forwarded-0.1.2.tgz#98c23dab1175657b8c0573e8ceccd91b0ff18c84"
   integrity sha1-mMI9qxF1ZXuMBXPozszZGw/xjIQ=
 
-found-relay@^0.4.0-alpha.4:
-  version "0.4.0-alpha.4"
-  resolved "https://registry.yarnpkg.com/found-relay/-/found-relay-0.4.0-alpha.4.tgz#f2ecb0b4d9bb20a5e04f813633a6823a81701e4a"
-  integrity sha512-QnMi/G4QoPsRKxhpbJgyUNvsweb44LzS0iOIBMKQuEqbRxHgR2i/cvshYTtXwXwRp9QHaSR4iINolpCHqJ32zQ==
+found-relay@^0.4.0-alpha.5:
+  version "0.4.0-alpha.5"
+  resolved "https://registry.yarnpkg.com/found-relay/-/found-relay-0.4.0-alpha.5.tgz#f3b91c18d0aeedd8b6ea5412e74c5d9b2b367829"
+  integrity sha512-Oulws4AyNXhdhNxognQ25QouT0IMxbcSogmZ9I5qE8zvEQOIdb9VBszm7vUCRhhu/ouBpUy5ZyutMFfM1WnhJg==
   dependencies:
     babel-runtime "^6.26.0"
     is-promise "^2.1.0"
-    lodash "^4.17.10"
-    prop-types "^15.6.2"
-    prop-types-extra "^1.1.0"
-    warning "^4.0.2"
+    lodash "^4.17.11"
+    prop-types "^15.7.2"
+    warning "^4.0.3"
 
 found@^0.3.21:
   version "0.3.21"
@@ -7424,7 +7423,7 @@ prop-types-extra@^1.1.0:
     react-is "^16.3.2"
     warning "^3.0.0"
 
-prop-types@^15.5.8, prop-types@^15.6.1, prop-types@^15.6.2:
+prop-types@^15.5.8, prop-types@^15.6.1, prop-types@^15.6.2, prop-types@^15.7.2:
   version "15.7.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
   integrity sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ==
@@ -9372,6 +9371,7 @@ warning@^3.0.0:
   integrity sha1-MuU3fLVy3kqwR1O9+IIcAe1gW3w=
   dependencies:
     loose-envify "^1.0.0"
+
 
 warning@^4.0.2:
   version "4.0.3"
