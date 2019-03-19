@@ -1,4 +1,4 @@
-Zujo GraphQL Relay Modern Client:
+Zujo Todo GraphQL Relay Modern Client:
 ===
 
 ## Features
