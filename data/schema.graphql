@@ -1,5 +1,5 @@
 # source: http://localhost:3000/graphql
-# timestamp: Tue Mar 19 2019 14:50:32 GMT+0530 (India Standard Time)
+# timestamp: Mon Mar 25 2019 11:08:18 GMT+0530 (India Standard Time)
 
 schema {
   query: Root
@@ -46,6 +46,7 @@ type markAllTodosPayload {
 }
 
 type Mutation {
+  register(input: registerInput!): registerPayload
   addTodo(input: addTodoInput!): addTodoPayload
   changeTodoStatus(input: changeTodoStatusInput!): changeTodoStatusPayload
   markAllTodos(input: markAllTodosInput!): markAllTodosPayload
@@ -73,6 +74,18 @@ type PageInfo {
 
   """When paginating forwards, the cursor to continue."""
   endCursor: String
+}
+
+input registerInput {
+  email: String!
+  password: String!
+  clientMutationId: String
+}
+
+type registerPayload {
+  viewer: User
+  token: String
+  clientMutationId: String
 }
 
 input removeCompletedTodosInput {
