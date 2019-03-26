@@ -5,8 +5,8 @@ import { LocalStorage } from '../../../common/common.localstorage'
 
 
 const mutation = graphql`
-    mutation RegisterUserMutation($input: registerInput!){
-        register(input: $input){
+    mutation LoginUserMutation($input: loginInput!){
+        login(input: $input){
             viewer{
                 id
                 email
@@ -33,7 +33,7 @@ function commit(environment,{
             }
         },
         updater: (store) =>{
-            const payload = store.getRootField('register');
+            const payload = store.getRootField('login');
             if (payload){
                 const token = payload.getValue('token')
                 if(token){

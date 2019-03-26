@@ -5,15 +5,16 @@ import { createFragmentContainer, graphql } from 'react-relay';
 import EmailInput from './EmailInput.Component'
 import PasswordInput from './PasswordInput.Component'
 
-import RegisterUserMutation from './mutations/RegisterUserMutation'
+import LoginUserMutation from './mutations/LoginUserMutation'
 
 const propTypes = {
     relay: PropTypes.object.isRequired
 }
 
-class Register extends React.Component{
-    constructor(props, context) {
-        super(props, context);
+class Login extends React.Component{
+    constructor(props, context){
+        super(props, context)
+
         this.state = {
             user:{
                 email: '',
@@ -23,8 +24,6 @@ class Register extends React.Component{
             submitted: false,
             errors: []
         }
-
-        this._handleChange = this._handleChange.bind(this);
     }
 
     _handleChange = e =>{
@@ -53,24 +52,13 @@ class Register extends React.Component{
             });
         }
 
-        // Validate password confirmation
-        if(!this._validateConfirmPassword(user)){
-            this.setState(state => {
-                return {
-                    errors: state.errors.concat([{ 
-                        message: "Mismatch password and confirmed password!" 
-                    }])
-                }
-            });
-        }
-
-
-
+        // Login
         const { relay } = this.props
         this.setState({ submitted: true });
 
-        // Commit mutation
-        RegisterUserMutation.commit(
+        // Commit mutation 
+         // Commit mutation
+         LoginUserMutation.commit(
             relay.environment, 
             {
                 email: user.email, 
@@ -107,28 +95,17 @@ class Register extends React.Component{
         return false
     }
 
-    _validateConfirmPassword = user => {
-        if(user 
-            && user.password 
-            && user.confirm_password
-            && user.password  === user.confirm_password){
-            return true
-        }
-        return false
-    }
-
     render(){
         return (
             <section className="todoapp">
                 <header className="header">
-                    <h1>register</h1>
+                    <h1>login</h1>
                 </header>
                 <form name="formRegister" onSubmit={this._handleSubmit} >
                     <EmailInput name="email" placeholder="email" className="email" onChange={this._handleChange}  />
                     <PasswordInput name="password" placeholder="password" className="password" onChange={this._handleChange} />
-                    <PasswordInput name="confirm_password" placeholder="confirm password" className="password" onChange={this._handleChange} />
                     <button className="load-more-btn" onClick={this._handleSubmit} >
-                        {'Register'}
+                        {'Login'}
                     </button>
                     <ul>
                         {(this.state && this.state.errors && this.state.errors.length) ? 
@@ -142,12 +119,12 @@ class Register extends React.Component{
         )
     }
 }
-Register.propTypes = propTypes
+Login.propTypes = propTypes
 
 export default createFragmentContainer(
-    Register,
+    Login,
     graphql`
-        fragment Register_viewer on User{
+        fragment Login_viewer on User{
             id
             email
         }

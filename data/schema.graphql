@@ -1,5 +1,5 @@
 # source: http://localhost:3000/graphql
-# timestamp: Mon Mar 25 2019 11:08:18 GMT+0530 (India Standard Time)
+# timestamp: Tue Mar 26 2019 15:43:41 GMT+0530 (India Standard Time)
 
 schema {
   query: Root
@@ -34,6 +34,18 @@ type deletedIds {
   deletedIds: [String]
 }
 
+input loginInput {
+  email: String!
+  password: String!
+  clientMutationId: String
+}
+
+type loginPayload {
+  viewer: User
+  token: String
+  clientMutationId: String
+}
+
 input markAllTodosInput {
   complete: Boolean!
   clientMutationId: String
@@ -47,6 +59,7 @@ type markAllTodosPayload {
 
 type Mutation {
   register(input: registerInput!): registerPayload
+  login(input: loginInput!): loginPayload
   addTodo(input: addTodoInput!): addTodoPayload
   changeTodoStatus(input: changeTodoStatusInput!): changeTodoStatusPayload
   markAllTodos(input: markAllTodosInput!): markAllTodosPayload

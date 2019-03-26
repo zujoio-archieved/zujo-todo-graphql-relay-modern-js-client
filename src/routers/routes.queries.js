@@ -33,9 +33,18 @@ const RegisterQuery = graphql`
     }
 `;
 
+const LoginQuery = graphql`
+  query routes_Login_Query {
+    viewer{
+      ...Login_viewer
+    }
+  }
+`
+
 export { 
     AppQuery,
     TodoAppQuery,
     TodoListQuery,
-    RegisterQuery
+    RegisterQuery,
+    LoginQuery
 }
