@@ -7611,6 +7611,16 @@ rc@^1.0.1, rc@^1.1.6, rc@^1.2.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
+react-alert-template-basic@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/react-alert-template-basic/-/react-alert-template-basic-1.0.0.tgz#89bcf35095faf5ebdd25e1e7c300e6b4234b5ba1"
+  integrity sha512-6x5Us0oc+jj8BDNkvSWfQMESk5SdyGKitXdLb7CwIlIlecyATjCTKSWpLABg8tpKAPOSJu4Dv/fYUqxXEio/XA==
+
+react-alert@^5.4.0:
+  version "5.4.0"
+  resolved "https://registry.yarnpkg.com/react-alert/-/react-alert-5.4.0.tgz#f55e6e1a448a4f7eccc02db55f97f0d1b0874b75"
+  integrity sha512-9AfcwS+NhvYVsp+upUCNJn3WKUzUBfYWF1qb+wKUTSL4dtnLniwdv/Ds2oomGDg1ooA8wdxKfcElwwMYg8IKUQ==
+
 react-dom@^16.8.3:
   version "16.8.4"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.8.4.tgz#1061a8e01a2b3b0c8160037441c3bf00a0e3bc48"
@@ -7703,6 +7713,16 @@ react-static-container@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/react-static-container/-/react-static-container-1.0.2.tgz#30a4f7548860be1d55d5eb4c20645b835c2bdf34"
   integrity sha512-rxlZtZk5t6Y3gqqpaZ1lxY3RqlQcBU5uGsSoZj/hbF3ZweDqPbFHDkczT4emAxeaw37OD96RAAoayFGFQZCdWg==
+
+react-transition-group@^2.7.0:
+  version "2.7.0"
+  resolved "https://registry.yarnpkg.com/react-transition-group/-/react-transition-group-2.7.0.tgz#60ca3bb2bf83fe71c50816a936e985ce7b8134dc"
+  integrity sha512-CzF22K0x6arjQO4AxkasMaiYcFG/QH0MhPNs45FmNsfWsQmsO9jv52sIZJAalnlryD5RgrrbLtV5CMJSokrrMA==
+  dependencies:
+    dom-helpers "^3.3.1"
+    loose-envify "^1.4.0"
+    prop-types "^15.6.2"
+    react-lifecycles-compat "^3.0.4"
 
 react@^16.8.3:
   version "16.8.4"
@@ -9372,8 +9392,7 @@ warning@^3.0.0:
   dependencies:
     loose-envify "^1.0.0"
 
-
-warning@^4.0.2:
+warning@^4.0.2, warning@^4.0.3:
   version "4.0.3"
   resolved "https://registry.yarnpkg.com/warning/-/warning-4.0.3.tgz#16e9e077eb8a86d6af7d64aa1e05fd85b4678ca3"
   integrity sha512-rpJyN222KWIvHJ/F53XSZv0Zl/accqHR8et1kpaMTD/fLCRxtV8iX8czMzY7sVZupTI3zcUTg8eycS2kNF9l6w==
