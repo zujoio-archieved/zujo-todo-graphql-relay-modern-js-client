@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 01de7e1a3a6d55a66024b701ac07a061
+ * @relayHash a3286e64f5003120f5c72d7f1151b060
  */
 
 /* eslint-disable */
@@ -11,7 +11,8 @@
 import type { ConcreteRequest } from 'relay-runtime';
 type TodoList_viewer$ref = any;
 export type routes_TodoList_QueryVariables = {|
-  status: string
+  status: string,
+  count: number,
 |};
 export type routes_TodoList_QueryResponse = {|
   +viewer: ?{|
@@ -28,15 +29,16 @@ export type routes_TodoList_Query = {|
 /*
 query routes_TodoList_Query(
   $status: String!
+  $count: Int!
 ) {
   viewer {
-    ...TodoList_viewer_2Y9aWx
+    ...TodoList_viewer_3dpJtM
     id
   }
 }
 
-fragment TodoList_viewer_2Y9aWx on User {
-  todos(status: $status, first: 5) {
+fragment TodoList_viewer_3dpJtM on User {
+  todos(status: $status, first: $count) {
     edges {
       node {
         id
@@ -75,13 +77,19 @@ var v0 = [
     "name": "status",
     "type": "String!",
     "defaultValue": null
+  },
+  {
+    "kind": "LocalArgument",
+    "name": "count",
+    "type": "Int!",
+    "defaultValue": null
   }
 ],
 v1 = [
   {
-    "kind": "Literal",
+    "kind": "Variable",
     "name": "first",
-    "value": 5,
+    "variableName": "count",
     "type": "Int"
   },
   {
@@ -121,10 +129,10 @@ return {
             "name": "TodoList_viewer",
             "args": [
               {
-                "kind": "Literal",
+                "kind": "Variable",
                 "name": "count",
-                "value": 5,
-                "type": "Int"
+                "variableName": "count",
+                "type": null
               },
               {
                 "kind": "Variable",
@@ -273,11 +281,11 @@ return {
     "operationKind": "query",
     "name": "routes_TodoList_Query",
     "id": null,
-    "text": "query routes_TodoList_Query(\n  $status: String!\n) {\n  viewer {\n    ...TodoList_viewer_2Y9aWx\n    id\n  }\n}\n\nfragment TodoList_viewer_2Y9aWx on User {\n  todos(status: $status, first: 5) {\n    edges {\n      node {\n        id\n        complete\n        ...Todo_todo\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n  numTodos\n  numCompletedTodos\n  ...Todo_viewer\n}\n\nfragment Todo_todo on Todo {\n  id\n  complete\n  text\n}\n\nfragment Todo_viewer on User {\n  id\n}\n",
+    "text": "query routes_TodoList_Query(\n  $status: String!\n  $count: Int!\n) {\n  viewer {\n    ...TodoList_viewer_3dpJtM\n    id\n  }\n}\n\nfragment TodoList_viewer_3dpJtM on User {\n  todos(status: $status, first: $count) {\n    edges {\n      node {\n        id\n        complete\n        ...Todo_todo\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n  numTodos\n  numCompletedTodos\n  ...Todo_viewer\n}\n\nfragment Todo_todo on Todo {\n  id\n  complete\n  text\n}\n\nfragment Todo_viewer on User {\n  id\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'ec0036f8e070d527a1ef8a5e87f45942';
+(node/*: any*/).hash = 'a4d436e757cc8ebe4a2df42a4996ec1e';
 module.exports = node;
