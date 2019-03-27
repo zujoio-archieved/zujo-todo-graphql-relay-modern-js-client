@@ -25,7 +25,7 @@ const mutation = graphql`
     }
 `;
 
-function commit(enviroment, user, todos, complete, status){
+function commit(enviroment, user, todos, complete){
     return commitMutation(enviroment, {
         mutation,
         variables:{
