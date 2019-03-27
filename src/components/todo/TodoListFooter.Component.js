@@ -38,17 +38,17 @@ class TodoListFooter extends React.Component{
         
                 <ul className="filters">
                 <li>
-                    <Link to="/" activeClassName="selected" exact>
+                    <Link to="/todo" activeClassName="selected" exact>
                     All
                     </Link>
                 </li>
                 <li>
-                    <Link to="/active" activeClassName="selected">
+                    <Link to="/todo/active" activeClassName="selected">
                     Active
                     </Link>
                 </li>
                 <li>
-                    <Link to="/completed" activeClassName="selected">
+                    <Link to="/todo/completed" activeClassName="selected">
                     Completed
                     </Link>
                 </li>
