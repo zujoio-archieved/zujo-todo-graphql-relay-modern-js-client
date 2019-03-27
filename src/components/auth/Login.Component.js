@@ -25,6 +25,9 @@ class Login extends React.Component{
             errors: []
         }
     }
+    componentDidMount = () =>{
+        console.log("login mounted")
+    }
 
     _handleChange = e =>{
         const { name, value } = e.target

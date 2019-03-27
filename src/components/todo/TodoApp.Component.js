@@ -25,6 +25,7 @@ class TodoApp extends React.Component{
     }
 
     componentDidMount = () =>{
+        console.log("mounted")
         const { relay, viewer } = this.props;
         ChangeTodoStatusSubscription.request(relay.environment, viewer)
         RemoveTodoSubscription.request(relay.environment, viewer)

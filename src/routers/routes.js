@@ -1,7 +1,8 @@
 import makeRouteConfig from 'found/lib/makeRouteConfig';
 import Route from 'found/lib/Route';
 import React from 'react';
-import { graphql } from 'react-relay';
+
+import {PrivateRoute} from './PrivateRoute'
 
 import TodoApp from '../components/todo/TodoApp.Component'
 import TodoList from '../components/todo/TodoList.Component'
@@ -34,28 +35,28 @@ export default makeRouteConfig(
         query={RegisterQuery} 
         prepareVariables={params => ({ ...params, status: 'any' })} 
       ></Route>
-      <Route
+      <PrivateRoute
         path="/todo"
         Component={TodoApp}
         query={TodoAppQuery}
         prepareVariables={params => ({ ...params, status: 'any', count: DEFAULT_TODO_PAGE_LIMIT })}
       >
-        <Route
+        <PrivateRoute
           Component={TodoList}
           query={TodoListQuery}
           prepareVariables={params => ({ ...params, status: 'any', count: DEFAULT_TODO_PAGE_LIMIT })}
         />
-        <Route 
+        <PrivateRoute 
           path=":status" 
           Component={TodoList} 
           query={TodoListQuery} />
-        <Route 
+        <PrivateRoute 
           path="/home" 
           Component={TodoList} 
           query={TodoListQuery} 
           prepareVariables={params => ({ ...params, status: 'any', count: DEFAULT_TODO_PAGE_LIMIT })} 
         />
-      </Route>
+      </PrivateRoute>
 
   </Route>
 ,
