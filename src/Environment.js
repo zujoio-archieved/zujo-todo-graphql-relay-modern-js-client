@@ -1,8 +1,7 @@
 import { SubscriptionClient } from "subscriptions-transport-ws";
 import { Environment, Network, RecordSource, Store } from "relay-runtime";
 
-
-import { getToken } from "./utils/jwt"
+import { LocalStorage } from './common/common.localstorage'
 
 /**
  * Create store for relay connection
@@ -24,14 +23,21 @@ const socketEndPoint = `ws://${host}:${port}/${wsEndPointUrl}`
  * @param {*} operation 
  * @param {*} variables 
  */
-const fetchQuery = (operation, variables) => {
+const fetchQuery = async (operation, variables) => {
+  let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+  }
+
+  // Append token in header
+  const token =  await LocalStorage.getToken()
+  if(token != null){
+    headers["Authorization"] = token
+  }
+
   return fetch(`${httpEndPoint}`, {
     method: "POST",
-    headers: {
-      "Accept": "application/json",
-      "Content-Type": "application/json",
-      "Authorization": getToken()
-    },
+    headers: headers,
     body: JSON.stringify({
       query: operation.text,
       variables

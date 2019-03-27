@@ -1,5 +1,5 @@
 # source: http://localhost:3000/graphql
-# timestamp: Tue Mar 19 2019 12:42:18 GMT+0530 (India Standard Time)
+# timestamp: Tue Mar 26 2019 15:43:41 GMT+0530 (India Standard Time)
 
 schema {
   query: Root
@@ -34,6 +34,18 @@ type deletedIds {
   deletedIds: [String]
 }
 
+input loginInput {
+  email: String!
+  password: String!
+  clientMutationId: String
+}
+
+type loginPayload {
+  viewer: User
+  token: String
+  clientMutationId: String
+}
+
 input markAllTodosInput {
   complete: Boolean!
   clientMutationId: String
@@ -46,6 +58,8 @@ type markAllTodosPayload {
 }
 
 type Mutation {
+  register(input: registerInput!): registerPayload
+  login(input: loginInput!): loginPayload
   addTodo(input: addTodoInput!): addTodoPayload
   changeTodoStatus(input: changeTodoStatusInput!): changeTodoStatusPayload
   markAllTodos(input: markAllTodosInput!): markAllTodosPayload
@@ -73,6 +87,18 @@ type PageInfo {
 
   """When paginating forwards, the cursor to continue."""
   endCursor: String
+}
+
+input registerInput {
+  email: String!
+  password: String!
+  clientMutationId: String
+}
+
+type registerPayload {
+  viewer: User
+  token: String
+  clientMutationId: String
 }
 
 input removeCompletedTodosInput {
