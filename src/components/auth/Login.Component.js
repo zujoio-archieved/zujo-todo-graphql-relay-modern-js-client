@@ -4,6 +4,8 @@ import { createFragmentContainer, graphql } from 'react-relay';
 
 import EmailInput from './EmailInput.Component'
 import PasswordInput from './PasswordInput.Component'
+import OauthLogin from './oauthLogin.component';
+import {LocalStorage} from '../../common/common.localstorage';
 
 import LoginUserMutation from './mutations/LoginUserMutation'
 
@@ -95,6 +97,12 @@ class Login extends React.Component{
         return false
     }
 
+    _oauthSuccess = ({authToken}) => {
+        // console.log(authToken.accessToken);
+        LocalStorage.storeToken(authToken.accessToken);
+        this.props.router.push('/todo')
+    }
+
     render(){
         return (
             <section className="todoapp">
@@ -115,6 +123,7 @@ class Login extends React.Component{
                         : null }
                     </ul>
                 </form>
+                <OauthLogin onSuccess={this._oauthSuccess} />
             </section>
         )
     }

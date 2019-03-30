@@ -17,6 +17,7 @@
   "author": "arjun.kava",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.18.0",
     "classnames": "^2.2.6",
     "dotenv": "^7.0.0",
     "farce": "^0.2.7",
@@ -27,6 +28,8 @@
     "npm": "^6.9.0",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
+    "react-facebook-login": "^4.1.1",
+    "react-google-login": "^5.0.2",
     "react-relay": "3.0.0",
     "react-router-dom": "^5.0.0",
     "relay-runtime": "3.0.0",
