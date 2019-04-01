@@ -28,3 +28,8 @@ Zujo Todo GraphQL Relay Modern Client:
 ```sh
     yarn run relay-compiler
 ```
+
+Reference
+===
+[relay-authentication](https://github.com/jkettmann/relay-authentication) <br/>
+[nodejs-api-starter](https://github.com/kriasoft/nodejs-api-starter)

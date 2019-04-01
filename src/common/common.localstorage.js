@@ -17,6 +17,14 @@ class LocalStorage{
         return localStorage.getItem(LOCAL_STORAGE_LABLES.TOKEN);
     }
 
+     /**
+     * Fetch token from local storage
+     */
+    static getTokenSync = () => {
+        return localStorage.getItem(LOCAL_STORAGE_LABLES.TOKEN);
+    }
+
+
     /**
      * Clear auth token from 
      */
