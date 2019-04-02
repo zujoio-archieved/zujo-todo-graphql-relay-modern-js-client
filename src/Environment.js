@@ -42,8 +42,21 @@ const fetchQuery = async (operation, variables) => {
       query: operation.text,
       variables
     })
-  }).then(response => {
+  })
+  .then(response => {
     return response.json();
+  })
+  .then(json => {
+    if(json && json.errors && json.errors.length){
+      //todo: Handle invalid token in better way
+      json.errors.forEach(error =>{
+        if(error.code && error.code == 1001){
+          LocalStorage.clearToken()
+        }
+      })
+    }
+
+    return json;
   });
 };
 

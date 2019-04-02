@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { createFragmentContainer, graphql } from 'react-relay';
+import validator from 'validator'
 
 import EmailInput from './EmailInput.Component'
 import PasswordInput from './PasswordInput.Component'
@@ -44,15 +45,14 @@ class Login extends React.Component{
         e.preventDefault();
         const { user } = this.state
 
-        // Validate input
-        if(!this._validateInput(user)){
-            this.setState(state => {
-                return {
-                    errors: state.errors.concat([{ 
-                        message: "User Name and Password are required!" 
-                    }])
-                }
-            });
+        // Validate required input
+        if(!this._validateRequiredInput(user)){
+           this._raiseError("User Name and Password are required!");
+        }
+
+        // Validate email address
+        if(!validator.isEmail(user.email)){
+            this._raiseError("Email address is not valid!");
         }
 
         // Login
@@ -88,7 +88,7 @@ class Login extends React.Component{
             });
     }
 
-    _validateInput = user => {
+    _validateRequiredInput = user => {
         if(
             user.email 
             && user.password
@@ -96,6 +96,16 @@ class Login extends React.Component{
             return true
         }
         return false
+    }
+
+    _raiseError = message =>{
+        this.setState(state => {
+            return {
+                errors: state.errors.concat([{ 
+                    message
+                }])
+            }
+        });
     }
 
     render(){
