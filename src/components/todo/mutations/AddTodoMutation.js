@@ -46,10 +46,8 @@ function sharedUpdater(store, user, todoEdge) {
             return false
           });
           if(!recordAlreadyExists){
-            const edge = ConnectionHandler.createEdge(store, connection, todoEdge);
-            ConnectionHandler.insertEdgeBefore(connection, edge, cursor);
+            ConnectionHandler.insertEdgeBefore(connection, todoEdge, cursor);
           }
-          
         }
       });
 }
@@ -71,13 +69,14 @@ function commit(environment, user, text){
               sharedUpdater(store, user, payload.getLinkedRecord('todoEdge'))
           },
 
-        
+          
           optimisticUpdater: (store) => {
-              const id = `client:addTodo:Todo:${clientMutationId}`;
+              const id = `client:addTodo:TodoEdge:Todo:${clientMutationId}`;
               const todo = store.create(id, 'Todo');
               todo.setValue(text, 'text');
               todo.setValue(id, 'id')
 
+              console.log("client:addTodo:TodoEdge:${clientMutationId}", `client:addTodo:TodoEdge:${clientMutationId}`)
               const todoEdge = store.create(
                   `client:addTodo:TodoEdge:${clientMutationId}`,
                   'TodoEdge'
@@ -91,6 +90,7 @@ function commit(environment, user, text){
                   userProxy.setValue(numTodos + 1, 'numTodos')
               }
           }
+          
       });
   }
 }

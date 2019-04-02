@@ -48,7 +48,7 @@ class OauthLogin extends Component {
                     fields="name,email,picture"
                     callback={this.facebookResponse}
                     cssClass="facebook-btn"
-                    icon={<TiSocialFacebookCircular size={27} color="#4c68b9" style={{paddingRight: 13}} />}
+                    icon={<TiSocialFacebookCircular size={27} color="#4c68b9" style={{paddingRight: 12}} />}
                 />
             </div>
         );

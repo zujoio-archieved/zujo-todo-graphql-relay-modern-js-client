@@ -42,7 +42,6 @@ class TodoList extends React.Component{
     }
 
     _loadMore() {
-        console.log("this.props.relay.hasMore()", this.props.relay.hasMore())
         if (!this.props.relay.hasMore() || this.props.relay.isLoading()) {
           return;
         }
@@ -67,7 +66,7 @@ class TodoList extends React.Component{
         return (
             <section className="main">
                 {
-                  /** <div><pre>{JSON.stringify(todos.edges, null, 2) }</pre></div>*/
+                  /** <div><pre>{JSON.stringify(todos.edges, null, 2) }</pre></div> */
                 }
                 <input
                     id="toggle-all"
