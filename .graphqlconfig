@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "relay-react-demo": {
+      "schemaPath": "data/schema.graphql",
+      "extensions": {
+        "endpoints": {
+          "dev": {
+            "url": "http://localhost:3000/graphql"
+          }
+        }
+      }
+    } 
+  }
+}

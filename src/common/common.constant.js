@@ -1,0 +1,10 @@
+const DEFAULT_TODO_PAGE_LIMIT = 5
+
+const LOCAL_STORAGE_LABLES = {
+    TOKEN: 'token'
+}
+
+export { 
+    DEFAULT_TODO_PAGE_LIMIT,
+    LOCAL_STORAGE_LABLES
+}
