@@ -1,5 +1,5 @@
 # source: http://localhost:3000/graphql
-# timestamp: Thu Mar 28 2019 19:13:14 GMT+0530 (India Standard Time)
+# timestamp: Fri Apr 05 2019 15:51:05 GMT+0530 (India Standard Time)
 
 schema {
   query: Root
@@ -7,7 +7,20 @@ schema {
   subscription: Subscription
 }
 
+input addImageInput {
+  file: UploadImage
+  type: String!
+  path: String!
+  clientMutationId: String
+}
+
+type addImagePayload {
+  viewer: ImageEdge
+  clientMutationId: String
+}
+
 input addTodoInput {
+  file: UploadImage
   text: String!
   clientMutationId: String
 }
@@ -32,6 +45,22 @@ type changeTodoStatusPayload {
 
 type deletedIds {
   deletedIds: [String]
+}
+
+type Image implements Node {
+  """The ID of an object"""
+  id: ID!
+  type: String
+  path: String
+}
+
+"""An edge in a connection."""
+type ImageEdge {
+  """The item at the end of the edge"""
+  node: Image
+
+  """A cursor for use in pagination"""
+  cursor: String!
 }
 
 input loginInput {
@@ -66,6 +95,7 @@ type Mutation {
   removeCompletedTodos(input: removeCompletedTodosInput!): removeCompletedTodosPayload
   removeTodo(input: removeTodoInput!): removeTodoPayload
   renameTodo(input: renameTodoInput!): renameTodoPayload
+  addImage(input: addImageInput!): addImagePayload
 }
 
 """An object with an ID"""
@@ -156,6 +186,7 @@ type Todo implements Node {
   id: ID!
   complete: Boolean
   text: String
+  attachmentpath: String
 }
 
 type todoAdded {
@@ -180,6 +211,9 @@ type TodoEdge {
   """A cursor for use in pagination"""
   cursor: String!
 }
+
+"""The `Upload` scalar type represents a file upload."""
+scalar UploadImage
 
 type User implements Node {
   """The ID of an object"""

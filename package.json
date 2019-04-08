@@ -8,7 +8,7 @@
     "update-schema": "graphql get-schema --output ./data/schema.graphql --watch",
     "webpack": "webpack --mode production",
     "watch": "npm run update-schema | npm run relay-compiler",
-    "start": "webpack-dev-server --mode development"
+    "start": "webpack-dev-server --host 192.168.0.172 --port 8080 --mode development"
   },
   "repository": {
     "type": "git",
@@ -28,6 +28,7 @@
     "react": "^16.8.3",
     "react-dom": "^16.8.5",
     "react-relay": "3.0.0",
+    "react-responsive-modal": "^3.6.0",
     "react-router-dom": "^5.0.0",
     "relay-runtime": "3.0.0",
     "subscriptions-transport-ws": "^0.9.15",

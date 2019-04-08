@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 8e91e276fa3d29240e43ac8eab32f15a
+ * @relayHash 988ddcdf8e2c78467040e59fe8cca613
  */
 
 /* eslint-disable */
@@ -10,6 +10,7 @@
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
 export type addTodoInput = {|
+  file?: ?any,
   text: string,
   clientMutationId?: ?string,
 |};

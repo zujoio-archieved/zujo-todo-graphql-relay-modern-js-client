@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 2251c4865ddc7bfecbb25563ee04cf3f
+ * @relayHash b4227a5d41b7c0719c26d3581067a01f
  */
 
 /* eslint-disable */
@@ -26,6 +26,7 @@ export type MarkAllTodosMutationResponse = {|
             +id: string,
             +complete: ?boolean,
             +text: ?string,
+            +attachmentpath: ?string,
           |}
         |}>
       |},
@@ -58,6 +59,7 @@ mutation MarkAllTodosMutation(
             id
             complete
             text
+            attachmentpath
           }
         }
       }
@@ -169,6 +171,13 @@ v3 = [
                         "name": "text",
                         "args": null,
                         "storageKey": null
+                      },
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "name": "attachmentpath",
+                        "args": null,
+                        "storageKey": null
                       }
                     ]
                   }
@@ -222,11 +231,11 @@ return {
     "operationKind": "mutation",
     "name": "MarkAllTodosMutation",
     "id": null,
-    "text": "mutation MarkAllTodosMutation(\n  $input: markAllTodosInput!\n  $status: String\n) {\n  markAllTodos(input: $input) {\n    viewer {\n      todos(status: $status) {\n        edges {\n          node {\n            id\n            complete\n            text\n          }\n        }\n      }\n      id\n      numCompletedTodos\n    }\n    changedTodos {\n      id\n      complete\n    }\n  }\n}\n",
+    "text": "mutation MarkAllTodosMutation(\n  $input: markAllTodosInput!\n  $status: String\n) {\n  markAllTodos(input: $input) {\n    viewer {\n      todos(status: $status) {\n        edges {\n          node {\n            id\n            complete\n            text\n            attachmentpath\n          }\n        }\n      }\n      id\n      numCompletedTodos\n    }\n    changedTodos {\n      id\n      complete\n    }\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '2e5fe007a718e262f796eb698ebcdfff';
+(node/*: any*/).hash = 'f42c99b3bc76aa0136e4bbfeec570b05';
 module.exports = node;

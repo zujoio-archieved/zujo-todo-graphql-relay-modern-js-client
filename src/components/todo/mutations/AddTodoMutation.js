@@ -53,16 +53,16 @@ function sharedUpdater(store, user, todoEdge) {
 }
 
 
-function commit(environment, user, text){
+function commit(environment, user, text,file,uploadables){
     if(environment){
       const clientMutationId = uuid.v4();
 
       return commitMutation(environment, {
           mutation,
           variables: {
-              input: { text, clientMutationId  }
+              input: { text, clientMutationId,file  }
           },
-
+          uploadables,
           
           updater(store){
               const payload = store.getRootField('addTodo');

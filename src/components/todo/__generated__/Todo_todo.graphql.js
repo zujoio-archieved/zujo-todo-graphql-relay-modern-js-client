@@ -14,6 +14,7 @@ export type Todo_todo = {|
   +id: string,
   +complete: ?boolean,
   +text: ?string,
+  +attachmentpath: ?string,
   +$refType: Todo_todo$ref,
 |};
 */
@@ -46,9 +47,16 @@ const node/*: ReaderFragment*/ = {
       "name": "text",
       "args": null,
       "storageKey": null
+    },
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "attachmentpath",
+      "args": null,
+      "storageKey": null
     }
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '1bacf21a9a7fd8b20040bec87f55c267';
+(node/*: any*/).hash = '0ede55a901a05d0650157cbe9f85ba6a';
 module.exports = node;

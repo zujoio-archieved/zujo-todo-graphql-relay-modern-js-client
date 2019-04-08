@@ -428,3 +428,83 @@ html .clear-completed:active {
 		bottom: 10px;
 	}
 }
+
+.mm_ImgUpload{
+	text-align: center;
+	border-width: 2px;
+	border-radius: 8px;
+	background-color: #eef3ff;
+	padding: 15px !important;
+}
+.mm_ImgUpload >input{
+	padding: 15px;
+}
+.my_btn{
+	border: 1px solid #cc9a9a;
+	cursor: pointer;
+    padding: 7px;
+	border-radius: 5px;
+	color: black
+}
+.my_btn:hover {
+	background: #cc9a9a;
+	color: white
+}
+
+#sidebar a {
+	position: absolute;
+	left: -80px;
+	transition: 0.3s;
+	padding: 15px;
+	width: 100px;
+	text-decoration: none;
+	font-size: 20px;
+	color: white;
+	border-radius: 0 5px 5px 0;
+  }
+  
+  #sidebar a:hover {
+	left: 0;
+  }
+  
+  #Show_gallary {
+	top: 20px;
+	background-color: #cc9a9a;;
+  }
+  .Uploading{
+		display:none
+	}
+
+  
+	#Uploading + label {
+		width: 25px;
+    height: 15px;
+    font-size: 0;
+    position: absolute;
+    top: -52px;
+    right: 8px;
+   
+    transform: rotate(90deg);
+	}
+
+	.Uploading + label:before {
+    
+    font-size: 22px;
+    color: #cc9a9a;
+    padding: 10px 27px 10px 27px
+}
+#Download + label{
+	width: 25px;
+	height: 15px;
+	font-size: 0;
+	position: absolute;
+	top: -4px;
+	right: 40px;
+ 
+	
+}
+.Download_File{
+	position: absolute;
+	right: 50px;
+	top: 11px;
+}

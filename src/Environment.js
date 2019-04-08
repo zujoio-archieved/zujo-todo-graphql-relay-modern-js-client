@@ -20,32 +20,69 @@ const socketEndPoint = `ws://${host}:${port}/${wsEndPointUrl}`
 
 /**
  * Fetch query from relay server
- * @param {*} operation 
- * @param {*} variables 
+ * @param {*} operation  operation use for query 
+ * @param {*} variables  variable is used for what kind of input needed for operation
  */
-const fetchQuery = async (operation, variables) => {
-  let headers = {
-    "Accept": "application/json",
-    "Content-Type": "application/json",
-  }
+const fetchQuery = async (operation, variables, cacheConfig, uploadables) => {
 
-  // Append token in header
   const token =  await LocalStorage.getToken()
-  if(token != null){
-    headers["Authorization"] = token
-  }
+  const request = {
+    method: 'POST',
+    headers: {
+      ["Authorization"]: token,
 
-  return fetch(`${httpEndPoint}`, {
-    method: "POST",
-    headers: headers,
-    body: JSON.stringify({
-      query: operation.text,
-      variables
-    })
-  }).then(response => {
-    return response.json();
-  });
+    },
 };
+
+
+if (uploadables) {
+  if (!window.FormData) {
+      throw new Error('Uploading files without `FormData` not supported.');
+  }
+  
+  const formData = new FormData();
+  const opr = {
+    query: operation.text,
+    variables: variables
+  }
+  formData.append('operations', JSON.stringify(opr));
+  formData.append('map', JSON.stringify({"nfile":["variables.file"]}));
+
+  Object.keys(uploadables).forEach(key => {
+   
+    if (Object.prototype.hasOwnProperty.call(uploadables, key)) {
+    
+      formData.append(key, uploadables[key])
+    }
+  })
+
+ request.body = formData;
+
+  
+} else {
+  request.headers['Content-Type'] = 'application/json';
+  request.body = JSON.stringify({
+      query: operation.text,
+      variables,
+  });
+}
+
+
+
+return fetch(`${httpEndPoint}`, request)
+.then(response => {
+ 
+    if (response.status === 200) {
+        return response.json();
+    }
+    return response.json();
+})
+.catch(error => {
+    console.log(error);
+});
+}
+
+
 
 /**
  * Setup subscription server
@@ -77,5 +114,4 @@ const environment = new Environment({
 });
 
 export default environment;
-
 
