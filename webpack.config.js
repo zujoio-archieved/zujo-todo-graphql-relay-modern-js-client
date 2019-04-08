@@ -2,14 +2,7 @@ const webpack = require('webpack');
 var dotenv = require('dotenv').config({path: __dirname + '/.env'});
 
 module.exports = {
-<<<<<<< HEAD
-  entry: [
-    'babel-polyfill', 
-    './src/index'
-  ],
-=======
   entry: ['babel-polyfill', './src/index'],
->>>>>>> 740d6d9e60ad4d29c68c0fbf95f60b102340d6c3
 
   output: {
     path: __dirname + '/dist',
