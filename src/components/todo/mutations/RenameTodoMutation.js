@@ -9,7 +9,7 @@ const mutation = graphql`
             }
         }
     }
-`
+`;
 
 function getOptimisticResponse(todo, text){
     return {

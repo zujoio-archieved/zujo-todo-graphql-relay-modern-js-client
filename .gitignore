@@ -1,4 +1,8 @@
 node_modules
+<<<<<<< HEAD
 .env
 yarn.lock
 package.lock
+=======
+yarn.lock
+>>>>>>> master

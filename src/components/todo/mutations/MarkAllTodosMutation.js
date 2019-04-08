@@ -11,6 +11,8 @@ const mutation = graphql`
                             id
                             complete
                             text
+                            attachmentpath
+
                         }
                     }
                 }

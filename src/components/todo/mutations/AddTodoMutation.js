@@ -46,37 +46,38 @@ function sharedUpdater(store, user, todoEdge) {
             return false
           });
           if(!recordAlreadyExists){
-            ConnectionHandler.insertEdgeBefore(connection, todoEdge, cursor);
+            const edge = ConnectionHandler.createEdge(store, connection, todoEdge);
+            ConnectionHandler.insertEdgeBefore(connection, edge, cursor);
           }
+          
         }
       });
 }
 
 
-function commit(environment, user, text){
+function commit(environment, user, text,file,uploadables){
     if(environment){
       const clientMutationId = uuid.v4();
 
       return commitMutation(environment, {
           mutation,
           variables: {
-              input: { text, clientMutationId  }
+              input: { text, clientMutationId,file  }
           },
-
+          uploadables,
           
           updater(store){
               const payload = store.getRootField('addTodo');
               sharedUpdater(store, user, payload.getLinkedRecord('todoEdge'))
           },
 
-          
+        
           optimisticUpdater: (store) => {
-              const id = `client:addTodo:TodoEdge:Todo:${clientMutationId}`;
+              const id = `client:addTodo:Todo:${clientMutationId}`;
               const todo = store.create(id, 'Todo');
               todo.setValue(text, 'text');
               todo.setValue(id, 'id')
 
-              console.log("client:addTodo:TodoEdge:${clientMutationId}", `client:addTodo:TodoEdge:${clientMutationId}`)
               const todoEdge = store.create(
                   `client:addTodo:TodoEdge:${clientMutationId}`,
                   'TodoEdge'
@@ -90,7 +91,6 @@ function commit(environment, user, text){
                   userProxy.setValue(numTodos + 1, 'numTodos')
               }
           }
-          
       });
   }
 }

@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 4b943b94d91896ea1d66f2c97de2c193
+ * @relayHash b3c9603633aa02d1cea64ea602848f74
  */
 
 /* eslint-disable */
@@ -65,6 +65,7 @@ fragment Todo_todo on Todo {
   id
   complete
   text
+  attachmentpath
 }
 
 fragment Todo_viewer on User {
@@ -225,6 +226,13 @@ return {
                       {
                         "kind": "ScalarField",
                         "alias": null,
+                        "name": "attachmentpath",
+                        "args": null,
+                        "storageKey": null
+                      },
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
                         "name": "__typename",
                         "args": null,
                         "storageKey": null
@@ -301,7 +309,7 @@ return {
     "operationKind": "query",
     "name": "TodoListPaginationQuery",
     "id": null,
-    "text": "query TodoListPaginationQuery(\n  $count: Int!\n  $cursor: String!\n  $status: String\n) {\n  viewer {\n    ...TodoList_viewer_4qXjrI\n    id\n  }\n}\n\nfragment TodoList_viewer_4qXjrI on User {\n  todos(status: $status, first: $count, after: $cursor) {\n    edges {\n      node {\n        id\n        complete\n        ...Todo_todo\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n  numTodos\n  numCompletedTodos\n  ...Todo_viewer\n}\n\nfragment Todo_todo on Todo {\n  id\n  complete\n  text\n}\n\nfragment Todo_viewer on User {\n  id\n}\n",
+    "text": "query TodoListPaginationQuery(\n  $count: Int!\n  $cursor: String!\n  $status: String\n) {\n  viewer {\n    ...TodoList_viewer_4qXjrI\n    id\n  }\n}\n\nfragment TodoList_viewer_4qXjrI on User {\n  todos(status: $status, first: $count, after: $cursor) {\n    edges {\n      node {\n        id\n        complete\n        ...Todo_todo\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n  numTodos\n  numCompletedTodos\n  ...Todo_viewer\n}\n\nfragment Todo_todo on Todo {\n  id\n  complete\n  text\n  attachmentpath\n}\n\nfragment Todo_viewer on User {\n  id\n}\n",
     "metadata": {}
   }
 };

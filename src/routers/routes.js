@@ -7,7 +7,7 @@ import {PrivateRoute} from './PrivateRoute'
 import TodoApp from '../components/todo/TodoApp.Component'
 import TodoList from '../components/todo/TodoList.Component'
 import Register from '../components/auth/Register.Component'
-import Login from '../components/auth/Login.Component';
+import Login from '../components/auth/Login.Component'
 
 import { DEFAULT_TODO_PAGE_LIMIT } from '../common/common.constant'
 import { 
