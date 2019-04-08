@@ -26,7 +26,6 @@ class TodoList extends React.Component{
         const { relay, viewer } = this.props;
         const { variables } = this.context.relay;
         const complete = e.target.checked;
-       
         MarkAllTodosMutation.commit(
             relay.environment,
             viewer,
@@ -41,7 +40,6 @@ class TodoList extends React.Component{
     }
 
     _loadMore() {
-        console.log("this.props.relay.hasMore()", this.props.relay.hasMore())
         if (!this.props.relay.hasMore() || this.props.relay.isLoading()) {
           return;
         }
@@ -57,7 +55,6 @@ class TodoList extends React.Component{
 
     render() {
         const { viewer } = this.props;
-      
         const { todos, numTodos, numCompletedTodos } = viewer
 
         if(!numTodos){
@@ -67,7 +64,7 @@ class TodoList extends React.Component{
         return (
             <section className="main">
                 {
-                  /** <div><pre>{JSON.stringify(todos.edges, null, 2) }</pre></div>*/
+                  /** <div><pre>{JSON.stringify(todos.edges, null, 2) }</pre></div> */
                 }
                 <input
                     id="toggle-all"

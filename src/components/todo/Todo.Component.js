@@ -6,7 +6,6 @@ import { createFragmentContainer, graphql } from 'react-relay';
 import TodoTextInput from './Todo.Input.Component'
 import RemoveTodoMutation from './mutations/RemoveTodoMutation'
 import RenameTodoMutation from './mutations/RenameTodoMutation'
-
 import ChangeTodoStatusMutation from './mutations/ChangeTodoStatusMutation';
 
 
