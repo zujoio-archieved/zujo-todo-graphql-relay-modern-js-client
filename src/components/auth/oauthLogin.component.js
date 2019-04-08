@@ -35,7 +35,7 @@ class OauthLogin extends Component {
             <div style={{ textAlign: 'center', padding: 25, paddingTop: 0 }}>
             <hr style={{margin: '30px 25% 30px 25%'}}/>
                 <GoogleLogin
-                    clientId={process.env.GOOGLE_CLIENT_ID}
+                     clientId={process.env.GOOGLE_CLIENT_ID}
                     buttonText="Login with Google"
                     onSuccess={this.googleResponse}
                     onFailure={this.onFailure}
