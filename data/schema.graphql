@@ -1,5 +1,5 @@
 # source: http://localhost:3000/graphql
-# timestamp: Fri Apr 05 2019 15:51:05 GMT+0530 (India Standard Time)
+# timestamp: Wed May 22 2019 16:18:17 GMT+0530 (IST)
 
 schema {
   query: Root
@@ -7,15 +7,15 @@ schema {
   subscription: Subscription
 }
 
-input addImageInput {
-  file: UploadImage
-  type: String!
-  path: String!
+input addPostInput {
+  title: String!
+  description: String!
   clientMutationId: String
 }
 
-type addImagePayload {
-  viewer: ImageEdge
+type addPostPayload {
+  viewer: User
+  postEdge: PostEdge
   clientMutationId: String
 }
 
@@ -45,22 +45,6 @@ type changeTodoStatusPayload {
 
 type deletedIds {
   deletedIds: [String]
-}
-
-type Image implements Node {
-  """The ID of an object"""
-  id: ID!
-  type: String
-  path: String
-}
-
-"""An edge in a connection."""
-type ImageEdge {
-  """The item at the end of the edge"""
-  node: Image
-
-  """A cursor for use in pagination"""
-  cursor: String!
 }
 
 input loginInput {
@@ -95,7 +79,8 @@ type Mutation {
   removeCompletedTodos(input: removeCompletedTodosInput!): removeCompletedTodosPayload
   removeTodo(input: removeTodoInput!): removeTodoPayload
   renameTodo(input: renameTodoInput!): renameTodoPayload
-  addImage(input: addImageInput!): addImagePayload
+  addPost(input: addPostInput!): addPostPayload
+  removePost(input: removePostInput!): removePostPayload
 }
 
 """An object with an ID"""
@@ -119,6 +104,36 @@ type PageInfo {
   endCursor: String
 }
 
+type Post implements Node {
+  """The ID of an object"""
+  id: ID!
+  title: String
+  description: String
+}
+
+type postAdded {
+  postEdge: PostEdge
+  clientSubscriptionId: String
+}
+
+"""A connection to a list of items."""
+type PostConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [PostEdge]
+}
+
+"""An edge in a connection."""
+type PostEdge {
+  """The item at the end of the edge"""
+  node: Post
+
+  """A cursor for use in pagination"""
+  cursor: String!
+}
+
 input registerInput {
   email: String!
   password: String!
@@ -138,6 +153,17 @@ input removeCompletedTodosInput {
 type removeCompletedTodosPayload {
   viewer: User
   deletedIds: [String]
+  clientMutationId: String
+}
+
+input removePostInput {
+  id: ID!
+  clientMutationId: String
+}
+
+type removePostPayload {
+  viewer: User
+  deletedId: ID
   clientMutationId: String
 }
 
@@ -179,6 +205,8 @@ type Subscription {
   todoRemovedCompleted: deletedIds
   todoRemoved: Todo
   todoRenamed: Todo
+  postAdded: postAdded
+  postRemoved: Post
 }
 
 type Todo implements Node {
@@ -220,6 +248,8 @@ type User implements Node {
   id: ID!
   email: String
   todos(status: String = "any", after: String, first: Int, before: String, last: Int): TodoConnection
+  posts(after: String, first: Int, before: String, last: Int): PostConnection
+  numPosts: Int
   numTodos: Int
   numCompletedTodos: Int
 }

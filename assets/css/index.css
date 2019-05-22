@@ -175,6 +175,13 @@ body {
 .todo-list li.editing .view {
 	display: none;
 }
+#description {
+	font-size: 12px;
+	padding: 12px 16px;
+	margin: 0 0 0 43px;
+	color: red
+
+}
 
 .todo-list li .toggle {
 	text-align: center;
@@ -283,11 +290,18 @@ body {
 	float: left;
 	text-align: left;
 }
+.post-count {
+	float: left;
+	text-align: left;
+}
 
 .todo-count strong {
 	font-weight: 300;
 }
 
+.post-count strong {
+	font-weight: 300;
+}
 .filters {
 	margin: 0;
 	padding: 0;

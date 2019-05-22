@@ -24,7 +24,21 @@ const TodoListQuery = graphql`
     }
   }
 `;
+const PostAppQuery = graphql`
+query routes_PostApp_Query {
+  viewer {
+    ...PostApp_viewer
+  }
+}
+`;
 
+const PostListQuery = graphql`
+  query routes_PostList_Query($count: Int!) {
+    viewer {
+      ...PostList_viewer @arguments(count: $count, cursor: null)
+    }
+  }
+`;
 const RegisterQuery = graphql`
     query routes_Register_Query { 
         viewer {
@@ -43,6 +57,8 @@ const LoginQuery = graphql`
 
 export { 
     AppQuery,
+    PostAppQuery,
+    PostListQuery,
     TodoAppQuery,
     TodoListQuery,
     RegisterQuery,
