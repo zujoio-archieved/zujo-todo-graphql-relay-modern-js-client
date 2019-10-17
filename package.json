@@ -19,7 +19,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "classnames": "^2.2.6",
-    "dotenv": "^7.0.0",
+    "dotenv": "^8.2.0",
     "farce": "^0.2.8",
     "found": "^0.3.21",
     "found-relay": "^0.4.0-alpha.8",
