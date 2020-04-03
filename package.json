@@ -21,7 +21,7 @@
     "classnames": "^2.2.6",
     "dotenv": "^7.0.0",
     "farce": "^0.2.8",
-    "found": "^0.3.21",
+    "found": "^0.5.3",
     "found-relay": "^0.4.0-alpha.8",
     "install": "^0.12.2",
     "keycode": "^2.2.0",
