@@ -34,7 +34,7 @@
     "react-relay": "3.0.0",
     "react-responsive-modal": "^3.6.0",
     "react-router-dom": "^5.0.0",
-    "relay-runtime": "3.0.0",
+    "relay-runtime": "9.1.0",
     "subscriptions-transport-ws": "^0.9.15",
     "uuid": "^3.3.2"
   },
